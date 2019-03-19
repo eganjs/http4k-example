@@ -1,4 +1,4 @@
-package io.eganjs.http4k.example
+package io.eganjs.http4k.example.domain
 
 import com.dslplatform.json.CompiledJson
 
