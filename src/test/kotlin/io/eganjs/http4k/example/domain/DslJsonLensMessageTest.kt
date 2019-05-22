@@ -22,7 +22,7 @@ class DslJsonLensMessageTest {
     fun `dslJsonLens successfully serialises message`() {
         val response = Response(OK)
 
-        val actual = messageDslJsonLens(deserialisedMessage, response)
+        val actual: Response = messageDslJsonLens(deserialisedMessage, response)
 
         assertThat(actual, hasBody(equalTo(serialisedMessage)))
     }

@@ -8,6 +8,7 @@ import org.http4k.core.Response
 import org.http4k.core.Status
 
 object PingHandler : HttpHandler {
+
     private val messageLens = DslJsonLens.of<Message>()
 
     override fun invoke(p1: Request): Response =

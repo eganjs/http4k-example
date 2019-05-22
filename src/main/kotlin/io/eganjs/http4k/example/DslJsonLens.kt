@@ -20,15 +20,15 @@ object DslJsonLens {
         BiDiBodyLens(
             emptyList(),
             ContentType.APPLICATION_JSON,
-            deserialiser(clazz),
-            serialiser()
+            makeDeserialiser(clazz),
+            makeSerialiser()
         )
 
-    private fun <T> deserialiser(clazz: Class<T>): (HttpMessage) -> T = { httpMessage ->
+    private fun <T> makeDeserialiser(clazz: Class<T>): (HttpMessage) -> T = { httpMessage ->
         dslJson.deserialize(clazz, httpMessage.body.stream)!!
     }
 
-    private fun <T> serialiser(): (T, HttpMessage) -> HttpMessage = { entity, httpMessage ->
+    private fun <T> makeSerialiser(): (T, HttpMessage) -> HttpMessage = { entity, httpMessage ->
         val buffer = ByteArrayOutputStream(initialBufferSize)
         dslJson.serialize(entity, buffer)
         httpMessage.body(buffer.toString())
